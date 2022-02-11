@@ -13,4 +13,4 @@
 1. The game continues until the player closes the window.
 
 
-![**Interface**](greed_image.png)
+![**Interface**](greed_image)
