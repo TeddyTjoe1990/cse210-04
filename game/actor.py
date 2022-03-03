@@ -88,4 +88,4 @@ class Actor:
         self._velocity = velocity
     
     def __str__(self) -> str:
-        return self._text
+        return "score "

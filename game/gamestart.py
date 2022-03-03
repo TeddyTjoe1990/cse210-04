@@ -39,9 +39,9 @@ class Game:
         Args:
             cast (Cast): The cast of actors.
         """
-        robot = cast.get_first_actor("robots")
+        player = cast.get_first_actor("robots")
         velocity = self._keyboard_service.get_direction()
-        robot.set_velocity(velocity)
+        player.set_velocity(velocity)
  
         gem = cast.get_first_actor("gems")
         max_x = self._video_service.get_width()
