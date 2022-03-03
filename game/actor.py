@@ -7,85 +7,119 @@ class Actor:
     The object that moves in the game. 
     This object will track its desing, position on the screen and its velocity in 2d space.
     '''
-    def __init__(self) -> None:
-        '''
-        Construct an new object. 
-        '''
+    def __init__(self):
+        """Constructs a new Actor."""
         self._text = ""
         self._font_size = 15
         self._color = Color(255, 255, 255)
-        self._position = Point(0,0)  # CREATE A POSITION
-        self._velocity = Point(0,0)
-    
-    def get_text(self):
-        '''
-        Gets the object textual representation.
-        '''
-        return self._text
+        self._position = Point(0, 0)
+        self._velocity = Point(0, 0)
 
+    def get_color(self):
+        """Gets the actor's color as a tuple of three ints (r, g, b).
+        
+        Returns:
+            Color: The actor's text color.
+        """
+        return self._color
 
     def get_font_size(self):
-        '''
-        Get the object size.
-        '''
+        """Gets the actor's font size.
+        
+        Returns:
+            Point: The actor's font size.
+        """
         return self._font_size
-    
-    def get_color(self):
-        '''
-        Gets the object color.
-        '''
-        return self._color
-    
+
     def get_position(self):
-        '''
-        Gets the object position in 2d. 
-        '''
+        """Gets the actor's position in 2d space.
+        
+        Returns:
+            Point: The actor's position in 2d space.
+        """
         return self._position
+    
+    def get_text(self):
+        """Gets the actor's textual representation.
+        
+        Returns:
+            string: The actor's textual representation.
+        """
+        return self._text
 
     def get_velocity(self):
-        '''
-        Gets the object's speed and direction. 
-        '''
+        """Gets the actor's speed and direction.
+        
+        Returns:
+            Point: The actor's speed and direction.
+        """
         return self._velocity
-
+    
     def move_next(self, max_x, max_y):
-        '''
-        Moves the object to the next position according its speed. 
-        '''
+        """Moves the actor to its next position according to its velocity. Will wrap the position 
+        from one side of the screen to the other when it reaches the given maximum x and y values.
+        
+        Args:
+            max_x (int): The maximum x value.
+            max_y (int): The maximum y value.
+        """
         x = (self._position.get_x() + self._velocity.get_x()) % max_x
         y = (self._position.get_y() + self._velocity.get_y()) % max_y
-
         self._position = Point(x, y)
 
+    def set_color(self, color):
+        """Updates the color to the given one.
+        
+        Args:
+            color (Color): The given color.
+        """
+        self._color = color
+
+    def set_position(self, position):
+        """Updates the position to the given one.
+        
+        Args:
+            position (Point): The given position.
+        """
+        self._position = position
+    
+    def set_font_size(self, font_size):
+        """Updates the font size to the given one.
+        
+        Args:
+            font_size (int): The given font size.
+        """
+        self._font_size = font_size
+    
     def set_text(self, text):
-        '''
-        Updates the sign to the given value.
-        '''
+        """Updates the text to the given value.
+        
+        Args:
+            text (string): The given value.
+        """
         self._text = text
 
-    def set_font_size(self, font_size):
-        '''
-        Udpates the size font according to the given size. 
-        '''
-        self._font_size = font_size
-
-    def set_color(self, color):
-        '''
-        Updates the color to the given one. 
-        '''
-        self._color = color
-    
-    def set_position(self, position):
-        '''
-        Updates the position to the given one. 
-        '''
-        self._position = position
-
     def set_velocity(self, velocity):
-        '''
-        Updates the velocity to the given one. 
-        '''
+        """Updates the velocity to the given one.
+        
+        Args:
+            velocity (Point): The given velocity.
+        """
         self._velocity = velocity
-    
-    def __str__(self) -> str:
-        return "score "
+
+    def create_random_values(self):
+        """Creates random values for color and position, and sets font size to standard.
+        """
+        x = random.randint(1, Constants.COLS - 1)
+        y = random.randint(1, Constants.ROWS - 1)
+        position = Point(x, y)
+        position = position.scale(Constants.CELL_SIZE)
+
+        r = random.randint(0, 255)
+        g = random.randint(0, 255)
+        b = random.randint(0, 255)
+        color = Color(r, g, b)
+        
+        self.set_font_size(Constants.FONT_SIZE)
+        self.set_color(color)        
+        self.set_position(position)
