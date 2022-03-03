@@ -51,54 +51,27 @@ def main():
     player.set_position(position)
     cast.add_actor("robots", player)
     
-    # create the Gems
-    x = int(MAX_X / 2)
-    y = 0
-    position = Point(x, y)
-    #position = position.scale(CELL_SIZE)
+    # create the gems and rocks
+    for _ in range(constants.DEFAULT_ARTIFACTS):
+        gem_or_rock = random.randint(1, 2)
+        if gem_or_rock == 1:
+            artifact = Gem()
+        elif gem_or_rock == 2:
+            artifact = Rock()
+        else:
+            print("There was an error in finding whether this is a rock or a gem in __main__.py")
+        
+        artifact.create_random_values()
 
-    r = random.randint(0, 255)
-    g = random.randint(0, 255)
-    b = random.randint(0, 255)
-    color = Color(r, g, b)
-
-    gem = Artifact()
-    gem.set_text("*")
-    gem.set_font_size(FONT_SIZE)
-    gem.set_color(color)
-    gem.set_position(position)
-    cast.add_actor("gems", gem)
-
-    
-
-    # Create Rocks
-    list_rocks = []
-
-    for i in range(DEFAULT_ARTIFACTS):
-        x = random.randint(0, COLS - 1)   #random.randint(0,MAX_X)     
-        y = random.randint(0, ROWS - 1)   #random.randint(0,MAX_Y)    
-        position = Point(x, y)
-        position = position.scale(CELL_SIZE)
-
-        r = random.randint(0, 255)
-        g = random.randint(0, 255)
-        b = random.randint(0, 255)
-        color = Color(r, g, b)
-
-        rock = Artifact()
-        rock.set_text("@")
-        rock.set_font_size(FONT_SIZE)
-        rock.set_color(color)
-        rock.set_position(position)
-        list_rocks.append(rock)
-        rock.set_lists(list_rocks)
-        cast.add_actor("rocks", rock)
+        if gem_or_rock == 1:
+            cast.add_actor("gems", artifact)
+        elif gem_or_rock == 2:
+            cast.add_actor("rocks", artifact)
 
     
     # start the game
     keyboard_service = KeyboardService(CELL_SIZE)
     video_service = VideoService(CAPTION, MAX_X, MAX_Y, CELL_SIZE, FRAME_RATE)
-
     director = Game(keyboard_service, video_service)
     director.start_game(cast)
 
