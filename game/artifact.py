@@ -54,3 +54,4 @@ class Artifact(Actor):
 
     def set_score(self, points):
         self._score = points
+        self.set_text(f"Score: {str(self._score)}")

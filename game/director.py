@@ -39,8 +39,21 @@ class Game:
         Args:
             cast (Cast): The cast of actors.
         """
-        pass
+        player = cast.get_first_actor("players")
+        velocity = self._keyboard_service.get_direction()
+        player.set_velocity(velocity)
 
+        gems = cast.get_first_actor("gems")
+        for gem in gems.get_lists():
+            max_x = self._video_service.get_width()
+            max_y = self._video_service.get_height()
+            gem.move_down(max_x, max_y)
+
+        rocks = cast.get_first_actor("rocks")
+        for rock in rocks.get_lists():
+            max_x = self._video_service.get_width()
+            max_y = self._video_service.get_height()
+            rock.move_down(max_x, max_y)
 
     def _do_updates(self, cast):
         """Updates the robot's position and resolves any collisions with artifacts.
@@ -49,24 +62,25 @@ class Game:
             cast (Cast): The cast of actors.
         """
         banner = cast.get_first_actor("banners")
-        robot = cast.get_first_actor("robots")
+        player = cast.get_first_actor("players")
         gems = cast.get_actors("gems")
         rocks = cast.get_actors("rocks")
-
-        banner.set_text("")
+        
+        score = banner.get_score()
+        banner.set_score(score)
         max_x = self._video_service.get_width()
         max_y = self._video_service.get_height()
-        robot.move_next(max_x, max_y)
+        player.move_next(max_x, max_y)
 
         for gem in gems:
-            if robot.get_position().equals(gem.get_position()):
-                score = gem.get_message()
-                banner.set_text(score)
+            if player.get_position().equals(gem.get_position()):
+                score += 100
+                banner.set_score(score)
 
         for rock in rocks:
-            if robot.get_position().equals(rock.get_position()):
-                score = rock.get_message()
-                banner.set_text(score)  
+            if player.get_position().equals(rock.get_position()):
+                score -= 100
+                banner.set_score(score)  
 
     def _do_outputs(self, cast):
         """Draws the actors on the screen.
