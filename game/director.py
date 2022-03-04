@@ -6,8 +6,6 @@ from game.shared.point import Point
 from game.shared.constant import Constants
 import random
 
-constants = Constants()
-
 class Director:
     """A person who directs the game. 
     
