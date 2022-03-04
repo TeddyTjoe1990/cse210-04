@@ -1,4 +1,3 @@
-
 import random
 from game.actor import Actor
 from game.point import Point
@@ -45,7 +44,6 @@ class Artifact(Actor):
         self._position = self._position.scale(self._cell_size)
 
         return self._position
-
     
     def set_lists(self, lista):
         self._list_of_obj = lista
