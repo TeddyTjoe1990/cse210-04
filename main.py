@@ -6,7 +6,7 @@ from game.actor import Actor
 from game.artifact import Artifact
 from game.cast import Cast
 
-from game.gamestart import Game
+from game.director import Game
 
 from game.keyboard_service import KeyboardService
 from game.video_service import VideoService
