@@ -1,9 +1,4 @@
-from game.gem import Gem
-from game.rock import Rock
 
-from game.shared.color import Color
-from game.shared.point import Point
-from game.shared.constant import Constants
 import random
 
 class Director:
