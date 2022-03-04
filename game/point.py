@@ -1,4 +1,3 @@
-
 class Point():
     '''
     A distance from a relative origin(0,0).

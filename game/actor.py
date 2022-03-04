@@ -1,4 +1,3 @@
-
 from game.color import Color
 from game.point import Point
 
@@ -106,5 +105,3 @@ class Actor:
             velocity (Point): The given velocity.
         """
         self._velocity = velocity
-
-    
