@@ -50,7 +50,7 @@ def main():
     player.set_font_size(FONT_SIZE)
     player.set_color(WHITE)
     player.set_position(position)
-    cast.add_actor("robots", player)
+    cast.add_actor("players", player)
 
     #Create Gems.
     list_gems = []
@@ -100,7 +100,7 @@ def main():
     # start the game
     keyboard_service = KeyboardService(CELL_SIZE)
     video_service = VideoService(CAPTION, MAX_X, MAX_Y, CELL_SIZE, FRAME_RATE)
-    
+
     director = Game(keyboard_service, video_service)
     director.start_game(cast)
 
