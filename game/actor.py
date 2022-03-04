@@ -107,19 +107,4 @@ class Actor:
         """
         self._velocity = velocity
 
-    def create_random_values(self):
-        """Creates random values for color and position, and sets font size to standard.
-        """
-        x = random.randint(1, Constants.COLS - 1)
-        y = random.randint(1, Constants.ROWS - 1)
-        position = Point(x, y)
-        position = position.scale(Constants.CELL_SIZE)
-
-        r = random.randint(0, 255)
-        g = random.randint(0, 255)
-        b = random.randint(0, 255)
-        color = Color(r, g, b)
-        
-        self.set_font_size(Constants.FONT_SIZE)
-        self.set_color(color)        
-        self.set_position(position)
+    
