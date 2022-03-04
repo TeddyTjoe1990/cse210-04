@@ -1,4 +1,5 @@
 
+
 import random
 
 from game.actor import Actor
@@ -33,7 +34,6 @@ def main():
     
     # create the banner
     banner = Actor()
-    banner.set_text("Score")
     banner.set_font_size(FONT_SIZE)
     banner.set_color(WHITE)
     banner.set_position(Point(CELL_SIZE, 0))
@@ -50,24 +50,7 @@ def main():
     player.set_color(WHITE)
     player.set_position(position)
     cast.add_actor("robots", player)
-    
-    # create the gems and rocks
-    for _ in range(constants.DEFAULT_ARTIFACTS):
-        gem_or_rock = random.randint(1, 2)
-        if gem_or_rock == 1:
-            artifact = Gem()
-        elif gem_or_rock == 2:
-            artifact = Rock()
-        else:
-            print("There was an error in finding whether this is a rock or a gem in __main__.py")
-        
-        artifact.create_random_values()
-
-        if gem_or_rock == 1:
-            cast.add_actor("gems", artifact)
-        elif gem_or_rock == 2:
-            cast.add_actor("rocks", artifact)
-
+   
     
     # start the game
     keyboard_service = KeyboardService(CELL_SIZE)
