@@ -55,7 +55,3 @@ class Artifact(Actor):
     def set_score(self, points):
         self._score = points
 
-    def __str__(self) -> str:
-        return super(Artifact, self).__str__() + str(self._score)
-        #self._score = "Score: " + self.get_score() NO
-        #return f'Score: {self._score}' NO
