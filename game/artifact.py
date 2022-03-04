@@ -54,4 +54,3 @@ class Artifact(Actor):
 
     def set_score(self, points):
         self._score = points
-
